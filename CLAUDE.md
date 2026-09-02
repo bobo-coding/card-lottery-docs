@@ -23,6 +23,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `03-breaking-mechanics-japan.md` — 玩法体系与日本落地方案
 - `04-platform-product-design.md` — 多商家平台设计
 - `05-unit-economics.md` — 经济结构（结构层不依赖数字，测算层为示例）
+- `06-china-hobby-stocks.md` — 中国上市公司证据（**数据质量最高**：审计报告与招股书）。
+  中国非目标市场也非竞品，看它是为了用可审计数据校准行业结构判断
 
 `README.md` 是索引与结论速查，**改动文档结论时必须同步更新 README 的"核心结论速查"**。
 
@@ -71,6 +73,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **透明性悖论**：信任优势与毛利天花板是同一属性。密封盒零售价公开 → 溢价可被用户算出；
   Oripa 的不透明正是其定价权来源。且 L1+L3 强制 100% 实物履约，
   成本曲线是人力扩张而非软件扩张。
+- **合法 ≠ 可资本化**：约束有两层——法律层（是否违法）与资本层（是否可被定性为
+  "收割未成年人""变相赌博"）。资本层门槛更高。卡游 ¥100 亿营收、67% 毛利、
+  71% 市占仍上市失败。故 L1–L4 与信任架构同时是**融资与退出的前提**。
+- **无 IP 授权是优势也是软肋**：Breaking 卖厂商已发行的密封品，无授权临期/分成风险
+  （52TOYS、卡游的头号风险），但也无 IP 护城河 —— 护城河只能建在信任架构与运营效率上。
 
 ## 编号约定（易混，勿混用）
 
