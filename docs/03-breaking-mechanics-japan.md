@@ -2,7 +2,7 @@
 
 > 目标形态：**主打 Breaking 的众筹开卡平台**，市场：**日本**，差异化对手：**DOPA（オリパ）**
 > 前置文档：[01-product-taxonomy.md](./01-product-taxonomy.md) · [02-market-landscape.md](./02-market-landscape.md)
-> 后续文档：[04-platform-product-design.md](./04-platform-product-design.md)（多商家平台形态，本文 L1–L4 在其中升级为系统不变量 I1–I8）
+> 后续文档：[04-platform-product-design.md](./04-platform-product-design.md)（多商家平台形态，本文 L1–L4 在其中升级为系统不变量 I1–I9）
 > **免责**：§6 涉及法律结构，为公开评论与风险因素梳理，**非法律意见，落地前必须咨询日本律师**。
 
 > **编号约定**：本文 **L1–L4** 为法律硬约束。
@@ -254,7 +254,7 @@ Breaking 打 Oripa，有一个**结构性优势**和一个**结构性劣势**，
 > 但正是 L1 让本平台在监管收紧时处于安全侧。**§0 的核心矛盾就锁在这里。**
 
 > 在多商家平台形态下，L1–L4 靠人工审核不足以保障，
-> 已在 [04 §3](./04-platform-product-design.md) 升级为系统不变量 **I1–I8**，商家配置不出违规场次。
+> 已在 [04 §3](./04-platform-product-design.md) 升级为系统不变量 **I1–I9**，商家配置不出违规场次。
 
 ### 6.3 众筹结构的两种法律形态
 
