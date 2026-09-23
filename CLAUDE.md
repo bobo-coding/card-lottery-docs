@@ -9,7 +9,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 项目定位
 
-产品名 **Box Rush（BOXラッシュ）**（2026-09-23 确定，⚠️ 商标检索未做）。
+产品名 **Box Rush（BOXラッシュ）**（2026-09-23 确定；⚠️ 仅做了初步检索，见附录 B）。
 主打 **Breaking（众筹开卡）** 的平台，目标市场**日本**，差异化对手 **DOPA（オリパ 头部）**。**只做 Web，不做原生 App。**
 这个定位是用户在 2026-09 明确的，此前讨论过的皮肤开箱、盲盒电商、链上卡牌**均已排除出范围**。
 
@@ -33,6 +33,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 8 | **产品层**：角色 → 产品面 → 流程 → 模块 → 功能点 → 页面 → 指标 → MVP | 拆解 |
 | 9 | 界面设计 prompt（v0 / Lovable / Claude），含硬规则 UR1–UR9 与检查清单 | 交付物 |
 | 附录 A | 法律 / 商务 Blocker 与产品待决策 PD1–PD8 | 跟踪 |
+| 附录 B | 产品名 Box Rush 初步商标检索（J-PlatPat 未检索，须手动 / 弁理士） | 检索记录 |
 
 **改动时的同步项**：
 - 改结论 → 同步前言「核心结论速查」

@@ -17,3 +17,4 @@ TGC 开箱平台 **Box Rush / BOXラッシュ** 的设计文档库。主打 **Br
 | 8 | 产品功能拆解 |
 | 9 | 界面设计 Prompt（v0 / Lovable / Claude） |
 | 附录 A | 待决策与 Blocker |
+| 附录 B | 产品名初步商标检索 |
