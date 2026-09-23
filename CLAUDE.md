@@ -25,6 +25,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `05-unit-economics.md` — 经济结构（结构层不依赖数字，测算层为示例）
 - `06-china-hobby-stocks.md` — 中国上市公司证据（**数据质量最高**：审计报告与招股书）。
   中国非目标市场也非竞品，看它是为了用可审计数据校准行业结构判断
+- `07-product-feature-spec.md` — 产品功能预案。产品结构参考 06（Hobby 上市公司），
+  UI/UX 参考 DOPA；**借形不借魂**：界面可借，点数/回收/消费驱动等级等机制须拒绝或改造
 
 `README.md` 是索引与结论速查，**改动文档结论时必须同步更新 README 的"核心结论速查"**。
 
@@ -87,6 +89,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | `L1–L4` | **法律**硬约束 | 03 §6.2 |
 | `I1–I9` | **系统不变量** | 04 §3 |
 | `J1–J6` | 日本**分位单元** | 03 §3 |
+| `M1–M11` / `F*.*` | 功能**模块** / 功能点 | 07 §3 |
+| `D1–D13` | DOPA **界面模式** | 07 §1.1 |
+| `H1–H6` | Hobby 板块**产品含义** | 07 §1.2 |
 
 ## 两个生死变量
 
