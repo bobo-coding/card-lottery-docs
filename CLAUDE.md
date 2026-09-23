@@ -9,6 +9,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 项目定位
 
+产品名 **Box Rush（BOXラッシュ）**（2026-09-23 确定，⚠️ 商标检索未做）。
 主打 **Breaking（众筹开卡）** 的平台，目标市场**日本**，差异化对手 **DOPA（オリパ 头部）**。**只做 Web，不做原生 App。**
 这个定位是用户在 2026-09 明确的，此前讨论过的皮肤开箱、盲盒电商、链上卡牌**均已排除出范围**。
 
@@ -119,6 +120,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **无充值点数、无余额账户**：直接按位支付，退款只走原路（I3；⚠️ 資金決済法）。
 - **实名 ≠ 年龄管控**：支付限额与冷静期是 P0（HOBBY STOCKS 未成年人案例）。
 - **产品本质是履约操作系统**：功能量重心在运营端，用户 Web 只是前台。
+- **PD 已按倾向定（2026-09-23）**：满员前不可取消 / 参考价 A/B / 归属完成 + 入仓即结算（待律师）/
+  残口提醒仅订阅用户 / 瑕疵卡按原状归属；PD5 录像中断损失由平台承担。**仅 PD8 未决**（待律师），不要替用户推定。
 
 ## 两个生死变量
 

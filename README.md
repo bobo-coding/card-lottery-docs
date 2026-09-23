@@ -1,6 +1,6 @@
-# card-lottery
+# Box Rush（BOXラッシュ）
 
-TGC 开箱平台的设计文档库。主打 **Breaking（众筹开卡）**，目标市场**日本**，差异化对手 **DOPA（オリパ）**，**只做 Web**。
+TGC 开箱平台 **Box Rush / BOXラッシュ** 的设计文档库。主打 **Breaking（众筹开卡）**，目标市场**日本**，差异化对手 **DOPA（オリパ）**，**只做 Web**。
 
 **全部内容在一份文档里：[docs/breaking-platform.md](docs/breaking-platform.md)**
 
