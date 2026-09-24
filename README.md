@@ -1,8 +1,10 @@
 # Box Rush（BOXラッシュ）
 
-TGC 开箱平台 **Box Rush / BOXラッシュ** 的设计文档库。主打 **Breaking（众筹开卡）**，目标市场**日本**，差异化对手 **DOPA（オリパ）**，**只做 Web**。
+TGC 开箱平台 **Box Rush / BOXラッシュ** 的设计文档库。主打 **Breaking（众筹开卡）**，目标市场**日本**，差异化对手 **DOPA（オリパ）**，**只做 Web**，支付首选 **Stripe**。
 
 **全部内容在一份文档里：[docs/breaking-platform.md](docs/breaking-platform.md)**
+
+团队模块示意图：<https://claude.ai/artifact/GB1Yps3Lm8a5nWqfbJFbvj>（私有，需在页面 Share 菜单中共享给团队）
 
 | 章 | 内容 |
 |---|---|
