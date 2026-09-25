@@ -3358,9 +3358,9 @@ MVP 仅自营团队使用（§6.10），P1 开放第三方。
 │ [BOX 实拍 · 封条可见]           │
 │ ポケカ「XXX」2BOX キャラ枠      │
 │ ─────────────────────────── │
-│ ¥2,800〜/枠   参考: BOX ¥5,400 │
+│ ¥700〜/枠  参考: BOX ¥5,400×2  │
 │ 保底: 各枠 3 パック以上          │  ← 替代 DP3「最低保証 ¥xxx」
-│ ███████████░░░ 残り 4/20 枠    │  ← DP3 残口，语义为"距满员开封"
+│ ████████████░░ 残り 2/12 枠    │  ← DP3 残口，语义为"距满员开封"
 │ 開封 9/28 20:00  ・ 検証可能 ✓  │  ← 承诺时刻 + 种子已承诺
 │ [キャラ枠] [自営] [残りわずか]   │  ← DP3 标签体系
 └──────────────────────────────┘
@@ -3410,7 +3410,7 @@ MVP 仅自营团队使用（§6.10），P1 开放第三方。
 └─────────────────────────────────┘
 ┌ 満員待ち ────────────────────────┐
 │ ワンピース 3BOX 混合               │
-│ ████████░░ 16/20 ・ 締切 9/30     │
+│ ████████░░ 10/12 ・ 締切 9/30     │
 │ 未満員の場合は全額返金              │
 └─────────────────────────────────┘
 ```
@@ -3584,6 +3584,16 @@ MVP 仅自营团队使用（§6.10），P1 开放第三方。
 **技术栈假设**：Next.js（App Router）+ TypeScript + Tailwind CSS + shadcn/ui + lucide-react。
 Lovable 默认 React + Vite，prompt 同样适用，只需忽略 App Router 相关说明。
 
+**已生成的原型**（静态单文件 HTML，放在仓库 `prototype/`，浏览器直接打开，无需构建）：
+
+| Prompt | 文件 | 在线预览 | 生成日期 |
+|---|---|---|---|
+| UI-01 首页 | `prototype/ui-01-home.html` | https://claude.ai/artifact/GZGYS6PjtCq4PT9MLSetLA | 2026-09-25 |
+
+> 原型顶部有"原型设置"条，可切换参考价格显示（PD2 的 A/B）与页面状态（正常 / 加载中 / 无场次）；
+> 未生成的页面点击后提示"尚未生成"。数据为示例，价格按"各位价格合计 ≈ 参考零售价 × 1.10–1.30"设置。
+> 与 prompt 的技术栈假设（Next.js）不同：为遵守"仓库不引入构建工具"，原型用静态 HTML 实现同等布局与交互。
+
 **页面编号对照**：
 
 | Prompt | 页面（§8.9） | 端 | 优先级 |
@@ -3644,7 +3654,7 @@ All UI copy is Japanese. Instructions below are in English.
 - Rotating banner carousel under the tabs.
 - Dense 2-column card grid of lotteries on mobile.
 - Each lottery card: product photo, title, price per slot, guarantee line,
-  a thick fill-progress bar with 「残り 4/20 枠」, opening time, and small tag chips.
+  a thick fill-progress bar with 「残り 2/12 枠」, opening time, and small tag chips.
 - Full-screen overlay ONLY for reveal moments (see rule UR3).
 
 ## Design tokens (define as CSS variables; support light and dark)
@@ -3657,8 +3667,8 @@ All UI copy is Japanese. Instructions below are in English.
 - Numbers use tabular figures.
 
 ## Formatting
-- Currency: ¥2,800 (yen sign, thousands separator, no decimals).
-- Date/time in JST: 9/28(日) 20:00. Countdowns: 2日 03:14:05.
+- Currency: ¥12,800 (yen sign, thousands separator, no decimals).
+- Date/time in JST: 9/28(月) 20:00. Countdowns: 2日 03:14:05.
 - Hashes: monospace, truncated middle (e.g. 3f9a…c21e) with a copy button; full value on tap.
 
 ## HARD RULES (violating any of these is a bug)
@@ -3749,8 +3759,9 @@ type CollectionItem = {
 };
 
 Mock data: create 8 lotteries across ポケモン / ワンピース / 遊戯王 in varied statuses.
-Example: "ポケカ『テラスタルフェスex』2BOX キャラ枠", ¥2,800〜/枠, reference BOX ¥5,400,
-20 slots, 16 sold, opening 9/28(日) 20:00, self-operated.
+Example: "ポケカ『テラスタルフェスex』2BOX キャラ枠", ¥700〜/枠 (prices differ by character),
+reference BOX ¥5,400 ×2, 12 slots, 10 sold, opening 9/28(月) 20:00, self-operated.
+Keep mock prices economically plausible: sum of all slot prices ≈ reference retail total × 1.10–1.30.
 Use realistic Japanese card names. Use placeholder images from /public/mock/*.jpg.
 ```
 
@@ -3773,18 +3784,19 @@ Structure (top to bottom):
    Do not use discount banners.
 4. Sort chips: おすすめ / 開封が近い順 / 残り率 / 単価が安い順.
    Filter chips for partition type: キャラ枠 / パック番号 / 番号レンジ / 混合 / BOX丸ごと.
-5. Section "はじめてでも参加しやすい" : horizontal scroll of low-price lotteries (<= ¥1,500/枠).
+5. Section "はじめてでも参加しやすい" : horizontal scroll of pack-number (パック番号) or mixed-box (混合)
+   lotteries priced <= ¥1,000/枠, cheapest first.
 6. Main 2-column grid of LotteryCard components for ON_SALE lotteries.
 7. Bottom tab bar (ホーム active).
 
 LotteryCard component (reused elsewhere):
 - Product photo (4:3) with small seal icon overlay 「封印確認済」.
 - Title (2 lines max).
-- 「¥2,800〜/枠」 and small grey 「参考: BOX ¥5,400」. Render the reference price only when the
+- 「¥700〜/枠」 and small grey 「参考: BOX ¥5,400×2」. Render the reference price only when the
   A/B flag `showReferencePrice` is true (PD2); the layout must look complete without it.
 - Guarantee line: 「保証: 各枠 3パック以上」.
-- Fill progress bar (thick, 8px) with text 「残り 4/20 枠」.
-- 「開封 9/28(日) 20:00」 and a teal chip 「検証可能」 with a shield-check icon.
+- Fill progress bar (thick, 8px) with text 「残り 2/12 枠」.
+- 「開封 9/28(月) 20:00」 and a teal chip 「検証可能」 with a shield-check icon.
 - Tag chips: partition type label, 「自営」 if selfOperated, 「残りわずか」 only if
   remaining <= 10% of total.
 - Include `showReferencePrice: boolean` in the mock lottery data (A/B flag).
@@ -3809,15 +3821,15 @@ Order of content is mandatory (evidence before the buy button):
 4. Partition scheme: list of slots. For ENUMERATED show slot name, price, guarantee,
    and an expandable list of card numbers included (「この枠に含まれるカード」).
    Show the fallback rule: 「リスト外のカードの扱い」.
-5. Fill block: large progress bar, 「16/20 枠 販売済」, sale deadline
-   「販売締切 9/27(土) 23:59」, and the sentence 「満員にならなければ全額返金」.
+5. Fill block: large progress bar, 「10/12 枠 販売済」, sale deadline
+   「販売締切 9/27(日) 23:59」, and the sentence 「満員にならなければ全額返金」.
 6. Fairness block: 「抽選シード（コミット）」 hash in monospace with copy button,
-   「コミット日時 9/20(土) 12:00」, and link 「公正性の仕組み」.
-7. Opening: 「開封予定 9/28(日) 20:00」, note 「開封は予定時刻に実施。視聴しなくても権利は変わりません」.
+   「コミット日時 9/20(日) 12:00」, and link 「公正性の仕組み」.
+7. Opening: 「開封予定 9/28(月) 20:00」, note 「開封は予定時刻に実施。視聴しなくても権利は変わりません」.
 8. Link 「ルール全文（上架時スナップショット）」 opening a sheet that shows the frozen rules
    as read-only text with the snapshot timestamp.
 
-Sticky bottom bar: price 「¥2,800〜」 and primary button:
+Sticky bottom bar: price 「¥700〜」 and primary button:
 - PICK mode: 「枠を選ぶ」 → /lottery/[id]/pick
 - RANDOM mode: quantity stepper (1..purchase limit) + 「ランダムで購入」
 - Disabled with label 「販売終了」 if status != ON_SALE.
@@ -3842,7 +3854,7 @@ Build the slot picker at "/lottery/[id]/pick" for PICK mode.
 - Multi-select allowed up to the purchase limit; selected tiles get an accent border
   and check icon. Show 「購入上限：1人 3 枠まで」.
 - Real-time feel: simulate another user locking a slot every 10s in mock mode.
-- Sticky bottom bar: 「選択中 2 枠 ¥5,600」 + 「購入手続きへ」.
+- Sticky bottom bar: 「選択中 2 枠 ¥1,400」 + 「購入手続きへ」.
 - Explain lock: when proceeding, 「10分間 枠を確保します」.
 No urgency animations. No "someone is viewing this" messages.
 ```
@@ -3857,7 +3869,7 @@ Checkout:
 - Order summary: lottery title, selected slots, prices, total.
 - Rules recap card (required): 「満員にならなければ全額返金」,
   「購入後のキャンセルはできません（不成立・中止の場合は全額返金）」,
-  「開封予定 9/28(日) 20:00」, 「当選カードは原則として倉庫で保管、まとめて発送できます」,
+  「開封予定 9/28(月) 20:00」, 「当選カードは原則として倉庫で保管、まとめて発送できます」,
   「カードの初期不良（印刷ズレ等）は現状のままお渡しします」.
 - A required checkbox 「上記を確認しました」 must be checked before the pay button enables.
 - Spending limit indicator: 「今月の利用額 ¥12,000 / 上限 ¥50,000」 with link to settings.
@@ -3866,7 +3878,7 @@ Checkout:
 - Payment method selector (mock of Stripe Payment Element): クレジットカード / Apple Pay /
   Google Pay / コンビニ払い. Show PayPay as 「準備中」 (disabled) for now.
   For コンビニ払い show a warning that payment must complete before the hold expires.
-- Primary button 「支払う ¥5,600」.
+- Primary button 「支払う ¥1,400」.
 - If current time is between 0:00 and 6:00 JST and total >= ¥30,000, show a confirmation
   dialog 「深夜の高額購入です。内容をご確認ください」 before paying.
 
