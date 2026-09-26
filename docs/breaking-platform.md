@@ -3584,7 +3584,8 @@ MVP 仅自营团队使用（§6.10），P1 开放第三方。
 **技术栈假设**：Next.js（App Router）+ TypeScript + Tailwind CSS + shadcn/ui + lucide-react。
 Lovable 默认 React + Vite，prompt 同样适用，只需忽略 App Router 相关说明。
 
-**已生成的原型**（静态单文件 HTML，放在仓库 `prototype/`，浏览器直接打开，无需构建）：
+**已生成的原型**（静态单文件 HTML，放在仓库 `prototype/`，浏览器直接打开，无需构建）。
+团队统一入口：**预览站 https://box-rush.github.io/preview/**（仓库 `box-rush/preview`，公开、noindex；原型为本仓库 `prototype/` 的副本）。
 
 | Prompt | 文件 | 在线预览 | 生成日期 |
 |---|---|---|---|

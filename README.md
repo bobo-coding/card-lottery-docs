@@ -4,7 +4,9 @@ TGC 开箱平台 **Box Rush / BOXラッシュ** 的设计文档库。主打 **Br
 
 **全部内容在一份文档里：[docs/breaking-platform.md](docs/breaking-platform.md)**
 
-界面原型：[`prototype/`](prototype/)（静态 HTML，浏览器直接打开）· 首页 UI-01 在线预览 <https://claude.ai/artifact/GZGYS6PjtCq4PT9MLSetLA>
+**团队预览站**：<https://box-rush.github.io/preview/>（模块示意图 + 全部原型；仓库 `box-rush/preview`，公开、noindex）
+
+界面原型源文件：[`prototype/`](prototype/)（静态 HTML，浏览器直接打开）
 
 团队模块示意图：<https://claude.ai/artifact/GB1Yps3Lm8a5nWqfbJFbvj>（私有，需在页面 Share 菜单中共享给团队）
 

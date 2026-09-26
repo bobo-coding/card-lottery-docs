@@ -48,9 +48,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
   增删功能点须同步 §8.3.3 功能地图、§8.9 页面清单、§8.13 MVP 切分
 - 改第 6 章不变量或第 8 章页面 → 同步第 9 章：§9.2 硬规则、§9.3 类型、对应 UI prompt、§9.7 检查清单
 - 待决策拍板 → §8.14 填结论与日期，同步附录 A.2
-- 增删 / 改动模块或功能点 → 同步**团队模块示意图**（Artifact：https://claude.ai/artifact/GB1Yps3Lm8a5nWqfbJFbvj）。
-  源文件不在仓库里：先用 Artifact `read` 取回原文，改后以 `url` 重新发布；发布前逐模块比对功能点数量与优先级
-  （当前：25 模块、153 功能点、MVP 104、MVP 53 页）
+- 增删 / 改动模块或功能点 → 同步**团队模块示意图**：源文件是预览仓库 `box-rush/preview` 的 `modules.html`
+  （本地 `~/Projects/box-rush-preview`）；改前逐模块比对功能点数量与优先级
+  （当前：25 模块、153 功能点、MVP 104、MVP 53 页）。旧的 Artifact 链接 GB1Yps3Lm8a5nWqfbJFbvj 需另行重发
+- 改动 `prototype/` → 原样复制到 `box-rush/preview` 的 `prototype/` 并推送；新增原型还要更新其 `index.html` 导航
+  （预览站 https://box-rush.github.io/preview/，GitHub Pages，main 分支根目录。**仓库与站点都是公开的**（用户 2026-09-26 选择），
+  不要把财务、法务细节、未公开决策放进预览站页面）
 - 引用一律写 `§章.节`（如 §6.3）；新增编号前先查前言「编号约定」防重名
 
 ## 参考源分工（易混，勿混用）
