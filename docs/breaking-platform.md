@@ -3344,7 +3344,7 @@ MVP 仅自营团队使用（§6.10），P1 开放第三方。
 | **隐私** | 個人情報保護法；公开记录中用户 ID 脱敏 | F8.1 |
 | **本地化** | 日语为主；JST；日本地址格式、和暦不用 | |
 | **公开站** | 免登录、可缓存、可 SEO；验证器可离线运行 | F8.5 分享获客 |
-| **浏览器兼容** | 手机优先：iOS Safari、Android Chrome；桌面为次要；PWA 可安装 | PD7 |
+| **浏览器兼容** | 手机优先（iOS Safari、Android Chrome），并适配平板（≥ 768px）与桌面（≥ 1024px，内容最宽 1200px）；PWA 可安装 | PD7 · §9.2 |
 | **通知可达** | 履约通知须经邮件 / LINE 送达，Web Push 仅作补充 | M11 渠道 |
 
 ---
@@ -3588,7 +3588,7 @@ Lovable 默认 React + Vite，prompt 同样适用，只需忽略 App Router 相�
 
 | Prompt | 文件 | 在线预览 | 生成日期 |
 |---|---|---|---|
-| UI-01 首页 | `prototype/ui-01-home.html` | https://claude.ai/artifact/GZGYS6PjtCq4PT9MLSetLA | 2026-09-25 |
+| UI-01 首页 | `prototype/ui-01-home.html` | https://claude.ai/artifact/GZGYS6PjtCq4PT9MLSetLA | 2026-09-25（2026-09-26 更新：Banner 移到品类 Tab 上方；平板 / 桌面适配） |
 
 > 原型顶部有"原型设置"条，可切换参考价格显示（PD2 的 A/B）与页面状态（正常 / 加载中 / 无场次）；
 > 未生成的页面点击后提示"尚未生成"。数据为示例，价格按"各位价格合计 ≈ 参考零售价 × 1.10–1.30"设置。
@@ -3642,8 +3642,13 @@ All UI copy is Japanese. Instructions below are in English.
 3. Mobile-first. Most users are on phones.
 
 ## Layout
-- User-facing pages: mobile-first, design at 390px wide, center content with max-width 480px
-  on larger screens. Sticky bottom action bar for primary CTA. Bottom tab bar with 5 tabs:
+- User-facing pages: mobile-first, design at 390px wide, then adapt at two breakpoints:
+  - >= 768px (tablet): full-width layout, 24px side gutter, 3-column card grid,
+    chip rows wrap instead of scrolling.
+  - >= 1024px (desktop): content max-width 1200px centered, 4-column card grid; the bottom
+    tab bar is replaced by text links in the header (ホーム / LIVE / マイ枠 / コレクション,
+    マイページ via the avatar); hover states on cards.
+  Sticky bottom action bar for primary CTA on mobile. Bottom tab bar (mobile / tablet) with 5 tabs:
   ホーム / LIVE / マイ枠 / コレクション / マイページ (lucide icons: Home, Radio, Ticket,
   Package, User).
 - Merchant and operations pages: desktop-first, 1280px, left sidebar navigation, dense tables.
@@ -3775,19 +3780,23 @@ Use realistic Japanese card names. Use placeholder images from /public/mock/*.jp
 Build the user home page at route "/".
 
 Structure (top to bottom):
-1. Header: wordmark 「BOXラッシュ」 (Latin sub-label "Box Rush" in small caps), right side
-   notification bell and avatar.
-2. Horizontally scrollable category tabs: すべて / ポケモン / ワンピース / 遊戯王.
-   Active tab underlined with accent color.
-3. Banner carousel (3 slides, auto-advance 5s, dots). Content: new lottery announcement,
-   "はじめての方へ：満員で開封・未達なら全額返金", upcoming opening schedule.
-   Do not use discount banners.
+1. Header (sticky): wordmark 「BOXラッシュ」 (Latin sub-label "Box Rush" in small caps), right side
+   notification bell and avatar. On desktop, text nav links next to the wordmark.
+2. Banner carousel ABOVE the category tabs (3 slides, auto-advance 5s, dots). Content: new
+   lottery announcement, "はじめての方へ：満員で開封・未達なら全額返金", confirmed opening
+   schedule (only LOCKED / READY lotteries — an unfilled lottery may never open).
+   Do not use discount banners. Responsive: 1 slide per view on mobile, 2 on tablet,
+   all 3 side by side on desktop (then stop auto-advance and hide dots).
+3. Category tabs: すべて / ポケモン / ワンピース / 遊戯王, horizontally scrollable,
+   active tab underlined with accent color. The tab bar sticks directly under the header
+   while scrolling.
 4. Sort chips: おすすめ / 開封が近い順 / 残り率 / 単価が安い順.
    Filter chips for partition type: キャラ枠 / パック番号 / 番号レンジ / 混合 / BOX丸ごと.
 5. Section "はじめてでも参加しやすい" : horizontal scroll of pack-number (パック番号) or mixed-box (混合)
    lotteries priced <= ¥1,000/枠, cheapest first.
-6. Main 2-column grid of LotteryCard components for ON_SALE lotteries.
-7. Bottom tab bar (ホーム active).
+6. Main grid of LotteryCard components for ON_SALE lotteries: 2 columns on mobile, 3 on tablet,
+   4 on desktop. On desktop the section-5 rail becomes a 4-column row instead of scrolling.
+7. Bottom tab bar (ホーム active) on mobile / tablet; hidden on desktop.
 
 LotteryCard component (reused elsewhere):
 - Product photo (4:3) with small seal icon overlay 「封印確認済」.

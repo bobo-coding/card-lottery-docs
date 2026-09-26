@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<!-- Box Rush 原型 UI-01 首页。由 docs/breaking-platform.md §9.4 UI-01 prompt 生成；静态单文件，无需构建，直接用浏览器打开。 -->
+<!-- Box Rush 原型 UI-01 首页。由 docs/breaking-platform.md §9.4 UI-01 prompt 生成；静态单文件，无需构建，直接用浏览器打开。手机优先，768px / 1024px 两档适配平板与桌面。 -->
 <title>BOXラッシュ ホーム</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,6 +11,7 @@
 <style>
 /* Tokens: docs/breaking-platform.md §9.2 */
 :root{
+  --hdr:61px; --gut:16px;
   --ground:#EEEEE8;
   --bg:#FAFAF7; --surface:#FFFFFF; --ink:#1A1A1A; --ink-2:#6B6B6B; --line:#E6E5DE; --track:#ECEBE4;
   --accent:#3B3FD8; --accent-ink:#FFFFFF; --accent-soft:#ECEDFC;
@@ -66,7 +67,7 @@ a{color:inherit;text-decoration:none}
 
 /* header */
 .top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.bar{display:flex;align-items:center;gap:10px;padding:10px 16px}
+.bar{display:flex;align-items:center;gap:10px;padding:10px var(--gut)}
 .mark{display:flex;align-items:baseline;gap:8px}
 .mark b{font-weight:900;font-size:19px;letter-spacing:.02em;display:flex;align-items:center;gap:1px}
 .mark b i{font-style:normal;background:var(--accent);color:var(--accent-ink);padding:0 5px;border-radius:5px;margin-right:2px;font-family:var(--mono);font-size:16px;line-height:1.35}
@@ -78,17 +79,22 @@ a{color:inherit;text-decoration:none}
 .avatar{width:32px;height:32px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-weight:700;font-size:13px}
 svg.i{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 
-.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding:0 12px}
+.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding:0 calc(var(--gut) - 4px)}
 .tabs::-webkit-scrollbar{display:none}
 .tab{flex:none;border:0;background:transparent;padding:8px 10px 10px;font-weight:500;color:var(--ink-2);cursor:pointer;position:relative;font-size:14px}
 .tab[aria-selected="true"]{color:var(--ink);font-weight:700}
 .tab[aria-selected="true"]::after{content:"";position:absolute;left:10px;right:10px;bottom:0;height:3px;border-radius:3px 3px 0 0;background:var(--accent)}
 
-main{display:flex;flex-direction:column;gap:22px;padding-block:14px 8px}
+main{display:flex;flex-direction:column;gap:18px;padding-block:14px 8px}
+.wrap{width:100%;max-width:1200px;margin-inline:auto}
+
+/* category bar: below the banner, sticks under the header */
+.catbar{position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--hdr));z-index:15;background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.dnav{display:none}
 
 /* carousel */
 .carousel{position:relative}
-.slides{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;gap:10px;padding:0 16px;scroll-padding:0 16px}
+.slides{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;gap:10px;padding:0 var(--gut);scroll-padding:0 var(--gut)}
 .slides::-webkit-scrollbar{display:none}
 .slide{flex:0 0 100%;scroll-snap-align:start;border-radius:14px;padding:16px 18px;min-height:132px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;position:relative;overflow:hidden}
 .slide .kicker{font-size:11px;font-weight:700;letter-spacing:.12em}
@@ -109,24 +115,24 @@ main{display:flex;flex-direction:column;gap:22px;padding-block:14px 8px}
 
 /* chips */
 .chipbar{display:flex;flex-direction:column;gap:8px}
-.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:0 16px}
+.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:0 var(--gut)}
 .chips::-webkit-scrollbar{display:none}
 .chip{flex:none;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 12px;font-size:12.5px;cursor:pointer;color:var(--ink);min-height:32px}
 .chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .chip.sort[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent);border-color:color-mix(in srgb,var(--accent) 40%,transparent);font-weight:700}
 .chips .lbl{flex:none;align-self:center;font-size:11px;color:var(--ink-2);margin-right:2px}
 
-.sec-h{display:flex;align-items:baseline;justify-content:space-between;padding:0 16px;gap:10px}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;padding:0 var(--gut);gap:10px}
 .sec-h h2{margin:0;font-size:16px;font-weight:900}
 .sec-h span{font-size:12px;color:var(--ink-2)}
 
 /* low price rail */
-.rail{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;padding:0 16px;scroll-snap-type:x proximity}
+.rail{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;padding:0 var(--gut);scroll-snap-type:x proximity}
 .rail::-webkit-scrollbar{display:none}
 .rail .card{flex:0 0 172px;scroll-snap-align:start}
 
 /* grid */
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:0 16px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:0 var(--gut)}
 
 /* lottery card */
 .card{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow);cursor:pointer;transition:transform .12s}
@@ -174,11 +180,11 @@ main{display:flex;flex-direction:column;gap:22px;padding-block:14px 8px}
 .card.skel{cursor:default;box-shadow:none}
 .card.skel .art{background:var(--skel)}
 
-.empty{margin:4px 16px;padding:28px 18px;border:1px dashed var(--line);border-radius:12px;text-align:center;display:flex;flex-direction:column;gap:8px;align-items:center;color:var(--ink-2)}
+.empty{margin:4px var(--gut);padding:28px 18px;border:1px dashed var(--line);border-radius:12px;text-align:center;display:flex;flex-direction:column;gap:8px;align-items:center;color:var(--ink-2)}
 .empty b{color:var(--ink);font-size:14px}
 .empty button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 14px;font-size:12.5px;cursor:pointer}
 
-.note{padding:6px 16px 0;font-size:11px;color:var(--ink-2);text-align:center}
+.note{padding:6px var(--gut) 0;font-size:11px;color:var(--ink-2);text-align:center}
 
 /* bottom nav */
 .nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:color-mix(in srgb,var(--surface) 96%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px));z-index:30}
@@ -188,6 +194,39 @@ main{display:flex;flex-direction:column;gap:22px;padding-block:14px 8px}
 
 .toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);font-size:12.5px;padding:8px 14px;border-radius:999px;z-index:40;max-width:calc(100% - 32px);text-align:center}
 
+/* ---------- tablet ---------- */
+@media (min-width:768px){
+  :root{--gut:24px}
+  body{background:var(--bg)}
+  .app{max-width:none}
+  .slide{flex-basis:calc((100% - 10px)/2)}
+  .grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  .chips{flex-wrap:wrap;overflow:visible}
+  .card:hover{box-shadow:0 2px 4px rgba(20,20,40,.06),0 10px 24px rgba(20,20,40,.08);transform:translateY(-2px)}
+  .nav{max-width:none}
+}
+/* ---------- desktop ---------- */
+@media (min-width:1024px){
+  :root{--hdr:65px}
+  .bar{padding-block:12px}
+  .mark b{font-size:21px}
+  .dnav{display:flex;gap:4px;margin-left:28px}
+  .dnav a{padding:8px 14px;border-radius:999px;color:var(--ink-2);font-weight:500}
+  .dnav a:hover{background:var(--track);color:var(--ink)}
+  .dnav a[aria-current="page"]{color:var(--ink);font-weight:700;background:var(--track)}
+  .nav{display:none}
+  .app{padding-bottom:24px}
+  main{gap:22px;padding-block:20px 16px}
+  .slide{flex-basis:calc((100% - 20px)/3);min-height:150px}
+  .dots{display:none}
+  .chipbar{flex-direction:row;justify-content:space-between;align-items:center;flex-wrap:wrap}
+  .chips{padding:0 var(--gut)}
+  .rail{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;overflow:visible}
+  .rail .card{flex:none}
+  .grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .title{font-size:14px}
+  .toast{bottom:24px}
+}
 @media (prefers-reduced-motion: reduce){
   .sk{animation:none}
   .card,.dots button{transition:none}
@@ -227,17 +266,22 @@ main{display:flex;flex-direction:column;gap:22px;padding-block:14px 8px}
   </details>
 
   <header class="top">
-    <div class="bar">
+    <div class="bar wrap">
       <a class="mark" href="#top" aria-label="BOXラッシュ ホーム"><b><i>BOX</i>ラッシュ</b><small>Box Rush</small></a>
+      <nav class="dnav" aria-label="メイン（デスクトップ）">
+        <a href="#top" aria-current="page">ホーム</a>
+        <a href="#live" data-proto="LIVE">LIVE</a>
+        <a href="#myslots" data-proto="マイ枠">マイ枠</a>
+        <a href="#collection" data-proto="コレクション">コレクション</a>
+      </nav>
       <span class="sp"></span>
       <button class="icon-btn" type="button" aria-label="お知らせ（未読あり）" data-proto="お知らせ一覧"><svg class="i"><use href="#i-bell"/></svg><span class="badge"></span></button>
       <a class="avatar" href="#mypage" aria-label="マイページ" data-proto="マイページ">S</a>
     </div>
-    <div class="tabs" role="tablist" aria-label="カテゴリ" id="cats"></div>
   </header>
 
   <main id="top">
-    <section class="carousel" aria-roledescription="carousel" aria-label="お知らせ">
+    <section class="carousel wrap" aria-roledescription="carousel" aria-label="お知らせ">
       <div class="slides" id="slides" tabindex="0">
         <article class="slide s1" aria-label="1 / 3">
           <span class="kicker">NEW</span>
@@ -258,18 +302,22 @@ main{display:flex;flex-direction:column;gap:22px;padding-block:14px 8px}
       <div class="dots" id="dots" role="tablist" aria-label="スライド"></div>
     </section>
 
-    <div class="chipbar">
+    <div class="catbar">
+      <div class="tabs wrap" role="tablist" aria-label="カテゴリ" id="cats"></div>
+    </div>
+
+    <div class="chipbar wrap">
       <div class="chips" id="sorts" role="group" aria-label="並び替え"></div>
       <div class="chips" id="filters" role="group" aria-label="遊び方で絞り込み"><span class="lbl">遊び方</span></div>
     </div>
 
-    <section id="low-sec" aria-labelledby="low-h">
+    <section id="low-sec" class="wrap" aria-labelledby="low-h">
       <div class="sec-h"><h2 id="low-h">はじめてでも参加しやすい</h2><span>パック番号・混合 / ¥1,000以下</span></div>
       <div style="height:10px"></div>
       <div class="rail" id="rail"></div>
     </section>
 
-    <section aria-labelledby="all-h">
+    <section class="wrap" aria-labelledby="all-h">
       <div class="sec-h"><h2 id="all-h">販売中の開封会</h2><span id="count" class="num"></span></div>
       <div style="height:10px"></div>
       <div class="grid" id="grid"></div>
@@ -399,13 +447,14 @@ const slides=document.getElementById("slides"), dots=document.getElementById("do
 dots.innerHTML=Array.from({length:N},(_,i)=>`<button type="button" role="tab" aria-label="スライド ${i+1}" aria-current="${i===0}"></button>`).join("");
 let cur=0, paused=false;
 const reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-function go(i){cur=(i+N)%N;slides.scrollTo({left:slides.children[cur].offsetLeft-16,behavior:reduce?"auto":"smooth"});}
+function go(i){cur=(i+N)%N;slides.scrollTo({left:slides.children[cur].offsetLeft-slides.children[0].offsetLeft,behavior:reduce?"auto":"smooth"});}
+const allVisible=()=>slides.scrollWidth<=slides.clientWidth+2;
 dots.addEventListener("click",e=>{const i=[...dots.children].indexOf(e.target);if(i>=0){go(i);}});
 slides.addEventListener("scroll",()=>{const w=slides.children[0].offsetWidth+10;cur=Math.round(slides.scrollLeft/w);
   [...dots.children].forEach((d,i)=>d.setAttribute("aria-current",i===cur));},{passive:true});
 ["pointerdown","focusin","mouseenter"].forEach(ev=>slides.addEventListener(ev,()=>paused=true));
 ["mouseleave","focusout"].forEach(ev=>slides.addEventListener(ev,()=>paused=false));
-if(!reduce) setInterval(()=>{if(!paused&&!document.hidden) go(cur+1);},5000);
+if(!reduce) setInterval(()=>{if(!paused&&!document.hidden&&!allVisible()) go(cur+1);},5000);
 
 /* prototype toast for pages not built yet */
 const toast=document.getElementById("toast"); let tt;
