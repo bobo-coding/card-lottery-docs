@@ -9,6 +9,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 `prototype/`：由第 9 章 prompt 生成的界面原型，**每页一个静态单文件 HTML**（`ui-NN-<name>.html`，内联 CSS/JS，
 只允许 Google Fonts），浏览器直接打开。"只要一个文档"指设计文档，原型不受此限。
+原型之间的链接：仓库文件用相对路径（如 `ui-02-lottery.html#L001`），在线预览（Artifact）用对方的预览链接。
 新增原型须在 §9.1「已生成的原型」表登记；prompt 或 §9.2 硬规则变更后，已生成的原型要按 §9.7 检查清单复核。
 示例价格须自洽：各位价格合计 ≈ 参考零售价 × 1.10–1.30（第 7 章），星期按实际日历计算。
 

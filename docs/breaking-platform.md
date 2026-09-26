@@ -3589,6 +3589,7 @@ Lovable 默认 React + Vite，prompt 同样适用，只需忽略 App Router 相�
 | Prompt | 文件 | 在线预览 | 生成日期 |
 |---|---|---|---|
 | UI-01 首页 | `prototype/ui-01-home.html` | https://claude.ai/artifact/GZGYS6PjtCq4PT9MLSetLA | 2026-09-25（2026-09-26 更新：Banner 移到品类 Tab 上方；平板 / 桌面适配） |
+| UI-02 场次详情 + 规则快照 | `prototype/ui-02-lottery.html`（`#L001` / `#L002` / `#L009` 切换示例） | https://claude.ai/artifact/YDTK2ZPvJzShKLudFrsb1G | 2026-09-26 |
 
 > 原型顶部有"原型设置"条，可切换参考价格显示（PD2 的 A/B）与页面状态（正常 / 加载中 / 无场次）；
 > 未生成的页面点击后提示"尚未生成"。数据为示例，价格按"各位价格合计 ≈ 参考零售价 × 1.10–1.30"设置。
@@ -3825,11 +3826,13 @@ Order of content is mandatory (evidence before the buy button):
 1. Image gallery of sealPhotos with caption 「入庫時の封印写真」 and capture date.
 2. Title, maker, series, sealed unit and quantity (e.g. 「BOX × 2」), 「自営」 badge if any,
    merchant name.
-3. Guarantee block: 「保証：各枠 3パック以上」 with an info icon explaining that every slot
-   receives physical cards.
+3. Guarantee block: e.g. 「保証：各枠 カード3枚以上」 (キャラ枠 guarantees a card count;
+   パック番号 guarantees packs) with an info icon explaining that every slot receives physical cards.
 4. Partition scheme: list of slots. For ENUMERATED show slot name, price, guarantee,
    and an expandable list of card numbers included (「この枠に含まれるカード」).
    Show the fallback rule: 「リスト外のカードの扱い」.
+   For POSITIONAL / RANDOM mode, list pack numbers but NEVER show per-number sold state before the
+   draw — numbers are not bound to buyers until the lottery is full.
 5. Fill block: large progress bar, 「10/12 枠 販売済」, sale deadline
    「販売締切 9/27(日) 23:59」, and the sentence 「満員にならなければ全額返金」.
 6. Fairness block: 「抽選シード（コミット）」 hash in monospace with copy button,
