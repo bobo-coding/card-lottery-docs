@@ -2696,7 +2696,8 @@ Lovable 默认 React + Vite，prompt 同样适用，只需忽略 App Router 相�
 | Prompt | 文件 | 在线预览 | 生成日期 |
 |---|---|---|---|
 | UI-01 首页 | `prototype/ui-01-home.html` | https://claude.ai/artifact/GZGYS6PjtCq4PT9MLSetLA | 2026-09-25（2026-09-26 更新：Banner 移到品类 Tab 上方；平板 / 桌面适配） |
-| UI-02 场次详情 + 规则快照 | `prototype/ui-02-lottery.html`（`#L001` / `#L002` / `#L009` 切换示例） | https://claude.ai/artifact/YDTK2ZPvJzShKLudFrsb1G | 2026-09-26 |
+| UI-02 场次详情 + 规则快照 | `prototype/ui-02-lottery.html`（`#L001` / `#L005` / `#L002` / `#L009` 切换示例） | https://claude.ai/artifact/YDTK2ZPvJzShKLudFrsb1G | 2026-09-26（2026-10-02 加 L005，「枠を選ぶ」跳转 UI-03） |
+| UI-03 选位 | `prototype/ui-03-pick.html`（`#L005` 默认 16 枠 / `#L001`） | https://claude.ai/artifact/T1bmtS4kAkQuZapYJHwzd3 | 2026-10-02 |
 
 > 原型顶部有"原型设置"条，可切换参考价格显示（PD2 的 A/B）与页面状态（正常 / 加载中 / 无场次）；
 > 未生成的页面点击后提示"尚未生成"。数据为示例，价格按"各位价格合计 ≈ 参考零售价 × 1.10–1.30"设置。
@@ -2972,7 +2973,9 @@ Build the slot picker at "/lottery/[id]/pick" for PICK mode.
   card-number list, guarantee text, and 「この枠を選ぶ」.
 - Multi-select allowed up to the purchase limit; selected tiles get an accent border
   and check icon. Show 「購入上限：1人 3 枠まで」.
-- Real-time feel: simulate another user locking a slot every 10s in mock mode.
+- Real-time feel: simulate another user locking a slot every 10s in mock mode. A lock resolves
+  after ~25s: it becomes SOLD, or is released back to AVAILABLE if unpaid. Never lock a slot the
+  current user has selected; never show who is locking or how many people are viewing.
 - Sticky bottom bar: 「選択中 2 枠 ¥1,400」 + 「購入手続きへ」.
 - Explain lock: when proceeding, 「10分間 枠を確保します」.
 No urgency animations. No "someone is viewing this" messages.
