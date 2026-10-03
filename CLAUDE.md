@@ -10,6 +10,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 `prototype/`：由第 9 章 prompt 生成的界面原型，**每页一个静态单文件 HTML**（`ui-NN-<name>.html`，内联 CSS/JS，
 只允许 Google Fonts），浏览器直接打开。原型不属于设计文档，不受"两份文档"的限制。
 原型之间的链接：仓库文件用相对路径（如 `ui-02-lottery.html#L001`），在线预览（Artifact）用对方的预览链接。
+**UI-08 起只发布到预览站**（claude.ai 私有预览只保留 UI-01–05、07 的旧版，不再更新）。
 **仓库 `prototype/` 是唯一原件**（临时目录会被清空，不要把 Artifact 的源文件当原件）：发布 Artifact 预览时，
 从仓库文件去掉 `<meta>` 与注释、取 `<head>` 与 `<body>` 的内容，再把相对链接替换成对方的 Artifact 链接。
 新增原型须在 §9.1「已生成的原型」表登记；prompt 或 §9.2 硬规则变更后，已生成的原型要按 §9.7 检查清单复核。

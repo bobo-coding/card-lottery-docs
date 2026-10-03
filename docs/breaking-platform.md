@@ -2706,7 +2706,11 @@ Lovable 默认 React + Vite，prompt 同样适用，只需忽略 App Router 相�
 | UI-04 确认与支付 + 结果 | `prototype/ui-04-checkout.html`（`#L005-3-5` 选位订单 / `#L002-r2` 随机订单） | https://claude.ai/artifact/Fmh1pBmtcdgKqvA2m15kRF | 2026-10-03 |
 | UI-05 マイ枠 + 场次进度 | `prototype/ui-05-my-slots.html`（`#wait` / `#ready` / `#done` / `#ended`；`#p-L009` 等进度页；原型时钟 9/26 18:00） | https://claude.ai/artifact/F1SNd6FjgrR9U1kiYZJfZQ | 2026-10-03 |
 | UI-07 录像回放 | `prototype/ui-07-recording.html`（`#L011`；`#L011-t754` 从第 754 秒开始） | https://claude.ai/artifact/2m8FAvMoS14wNCyPfA9B7a | 2026-10-03 |
+| UI-08 开盒结果 | `prototype/ui-08-result.html`（`#L011`；卡片与 UI-07 同一种子生成） | 预览站 | 2026-10-03 |
+| UI-09 验证页 + 公开验证站 | `prototype/ui-09-verify.html`（`#L015` 随机 / `#L009`、`#L011` 选位；无 # 为公开入口）。**浏览器内真实计算**，可切换"篡改值"演示不一致 | 预览站 | 2026-10-03 |
+| UI-10 仓库 + 发货申请 | `prototype/ui-10-collection.html`（`#stored` / `#shipping` / `#received` / `#ship`） | 预览站 | 2026-10-03 |
 
+> UI-08 起只发布到预览站，不再单独发布 claude.ai 私有预览（UI-01–05、07 的私有预览不再更新）。
 > 原型顶部有"原型设置"条，可切换参考价格显示（PD2 的 A/B）与页面状态（正常 / 加载中 / 无场次）；
 > 未生成的页面点击后提示"尚未生成"。数据为示例，价格按"各位价格合计 ≈ 参考零售价 × 1.10–1.30"设置。
 > 与 prompt 的技术栈假设（Next.js）不同：为遵守"仓库不引入构建工具"，原型用静态 HTML 实现同等布局与交互。
@@ -3100,6 +3104,8 @@ Build the opening result page at "/lottery/[id]/result".
   timestamp link.
 - Dispute entry: 「振り分けに疑問がある場合」 → form prefilled with lottery id and card id.
 - Do NOT show totals, values, profit, or rankings of who got the best cards.
+- 「手動」 attribution means a human resolved an edge card with two-person review; show it as a
+  neutral badge, not a warning. Gold styling is for SR and above only, consistently across pages.
 - Next action card: 「カードは倉庫で保管中です」 → link to /collection.
 ```
 
@@ -3125,6 +3131,11 @@ Sections:
 Also build "/verify" (public verifier): a single input 「開封会IDを入力」 that routes to
 /verify/[lotteryId]. No login, no navigation tab bar on public pages.
 Use Web Crypto API for SHA-256.
+Prototype algorithm (bx-shuffle-v1, an instance of §6.6.1): final = SHA-256(serverSeed|participantsHash|beacon);
+Fisher–Yates from the last index, j = first 8 hex of SHA-256(final:i) mod (i+1); participants are one line
+per purchased slot in purchase order. For PICK lotteries there is no draw: verify the seed commitment and the
+participants-list hash only, and say so on the page. Downloads are blocked in some previews, so show the
+verification script inline with a copy button. Provide a 「改ざんされた値で試す」 toggle in prototypes.
 ```
 
 #### UI-10 仓库 + 发货申请（U22 / U24）
@@ -3147,6 +3158,8 @@ Build "/collection" and "/collection/ship".
 - Informational note: 「まとめて発送すると送料を抑えられます」 (factual, no pressure,
   no "add N more items" nudges).
 - Confirm button 「発送を依頼する」 → success state with estimated ship date.
+- Prototype assumptions (mock, not decided): free storage 30 days after check-in; shipping fee
+  ¥390 standard / ¥680 insured. Group shipped / received items by source lottery with tracking number.
 ```
 
 #### UI-11 首次引导（U02）
