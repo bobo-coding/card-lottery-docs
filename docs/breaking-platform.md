@@ -2884,6 +2884,9 @@ Mock data: create 8 lotteries across ポケモン / ワンピース / 遊戯王 
 Example: "ポケカ『テラスタルフェスex』2BOX キャラ枠", ¥700〜/枠 (prices differ by character),
 reference BOX ¥5,400 ×2, 12 slots, 10 sold, opening 9/28(月) 20:00, self-operated.
 Keep mock prices economically plausible: sum of all slot prices ≈ reference retail total × 1.10–1.30.
+Use one fixed prototype clock for every page: NOW = 2026-09-26 18:00 JST (const PROTO_NOW). All
+countdowns, "today", sale deadlines and lifecycle states are computed against it, never Date.now();
+show 「原型时钟 2026-09-26 18:00 JST」 in the prototype control strip.
 Use realistic Japanese card names. Use placeholder images from /public/mock/*.jpg.
 ```
 
