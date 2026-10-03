@@ -4,12 +4,14 @@ TGC 开箱平台 **Box Rush / BOXラッシュ** 的设计文档库。主打 **Br
 
 设计内容分两份文档，**章号在两份之间全局统一**：
 
-- **产品文档**：[docs/breaking-platform.md](docs/breaking-platform.md)（前言 + 第 1、5–9 章 + 附录 A、B）
+- **产品文档**：[docs/breaking-platform.md](docs/breaking-platform.md)（前言 + 第 1、5–10 章 + 附录 A、B）
 - **市场研究**：[docs/market-research.md](docs/market-research.md)（第 2–4 章）
 
 **团队预览站**：<https://box-rush.github.io/preview/>（模块示意图 + 全部原型 + 截图与 prompt 汇总；仓库 `box-rush/preview`，公开、noindex）
 
-界面原型源文件：[`prototype/`](prototype/)（静态 HTML，浏览器直接打开）
+界面原型源文件：[`prototype/`](prototype/)（静态 HTML，浏览器直接打开；**只作布局与交互参考，其中参数是示例**）
+
+**开发从第 10 章读起**：规格权威顺序、按角色的阅读路径、状态枚举、验证算法规格与测试向量、未定参数与技术决策。
 
 | 章 | 内容 |
 |---|---|
@@ -23,5 +25,6 @@ TGC 开箱平台 **Box Rush / BOXラッシュ** 的设计文档库。主打 **Br
 | 7 | 单位经济模型 |
 | 8 | 产品功能拆解 |
 | 9 | 界面设计 Prompt（v0 / Lovable / Claude）；prompt 模板与生成过程（§9.8 / §9.9） |
+| 10 | 开发交接（不新增判断：权威顺序、状态枚举、算法规格、未定项） |
 | 附录 A | 待决策与 Blocker |
 | 附录 B | 产品名初步商标检索 |
