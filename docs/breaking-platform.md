@@ -2704,6 +2704,7 @@ Lovable 默认 React + Vite，prompt 同样适用，只需忽略 App Router 相�
 | UI-02 场次详情 + 规则快照 | `prototype/ui-02-lottery.html`（`#L001` / `#L005` / `#L002` / `#L009` 切换示例） | https://claude.ai/artifact/YDTK2ZPvJzShKLudFrsb1G | 2026-09-26（2026-10-02 加 L005，「枠を選ぶ」跳转 UI-03） |
 | UI-03 选位 | `prototype/ui-03-pick.html`（`#L005` 默认 16 枠 / `#L001`） | https://claude.ai/artifact/T1bmtS4kAkQuZapYJHwzd3 | 2026-10-02（2026-10-03：「確保して進む」跳转 UI-04） |
 | UI-04 确认与支付 + 结果 | `prototype/ui-04-checkout.html`（`#L005-3-5` 选位订单 / `#L002-r2` 随机订单） | https://claude.ai/artifact/Fmh1pBmtcdgKqvA2m15kRF | 2026-10-03 |
+| UI-05 マイ枠 + 场次进度 | `prototype/ui-05-my-slots.html`（`#wait` / `#ready` / `#done` / `#ended`；`#p-L009` 等进度页；原型时钟 9/26 18:00） | https://claude.ai/artifact/F1SNd6FjgrR9U1kiYZJfZQ | 2026-10-03 |
 
 > 原型顶部有"原型设置"条，可切换参考价格显示（PD2 的 A/B）与页面状态（正常 / 加载中 / 无场次）；
 > 未生成的页面点击后提示"尚未生成"。数据为示例，价格按"各位价格合计 ≈ 参考零售价 × 1.10–1.30"设置。
@@ -3033,6 +3034,8 @@ Build "/my-slots" and "/my-slots/[lotteryId]".
     buttons 「カレンダーに追加」 and 「割り当てを検証」.
   - 確定: 「結果を見る」.
   - 終了 (FAILED/ABORTED): 「不成立・返金済」 with refund date.
+  - A LOCKED lottery (full, draw pending) belongs to 開封待ち with a 「満員・抽選待ち」 badge and no
+    assignment yet. 「カレンダーに追加」 is a calendar link (e.g. Google Calendar), not a file download.
 
 /my-slots/[lotteryId] (progress page):
 - Vertical timeline of lifecycle steps with timestamps:
