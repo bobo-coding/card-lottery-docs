@@ -2709,6 +2709,11 @@ Lovable 默认 React + Vite，prompt 同样适用，只需忽略 App Router 相�
 | UI-08 开盒结果 | `prototype/ui-08-result.html`（`#L011`；卡片与 UI-07 同一种子生成） | 预览站 | 2026-10-03 |
 | UI-09 验证页 + 公开验证站 | `prototype/ui-09-verify.html`（`#L015` 随机 / `#L009`、`#L011` 选位；无 # 为公开入口）。**浏览器内真实计算**，可切换"篡改值"演示不一致 | 预览站 | 2026-10-03 |
 | UI-10 仓库 + 发货申请 | `prototype/ui-10-collection.html`（`#stored` / `#shipping` / `#received` / `#ship`） | 预览站 | 2026-10-03 |
+| UI-13 场次创建向导 + 分位编辑器 | `prototype/ui-13-merchant-wizard.html`（初始故意不合格以演示实时校验） | 预览站 | 2026-10-03 |
+| UI-14 开盒工位端 | `prototype/ui-14-station.html`（模拟 9/26 20:00 L009 开盒班次；可模拟摄像头断开） | 预览站 | 2026-10-03 |
+| UI-15 归属工作台 | `prototype/ui-15-attribution.html#L009`（二人确认、审计日志、生成开盒记录哈希） | 预览站 | 2026-10-03 |
+| UI-16 仓储拣货与合单 | `prototype/ui-16-warehouse.html`（`#in` / `#req` / `#pack` / `#out`；Enter 模拟扫码） | 预览站 | 2026-10-03 |
+| UI-17 数据看板 | `prototype/ui-17-dashboard.html`（可模拟 k < 3、无档位售罄告警） | 预览站 | 2026-10-03 |
 
 > UI-08 起只发布到预览站，不再单独发布 claude.ai 私有预览（UI-01–05、07 的私有预览不再更新）。
 > 原型顶部有"原型设置"条，可切换参考价格显示（PD2 的 A/B）与页面状态（正常 / 加载中 / 无场次）；
@@ -3228,6 +3233,9 @@ Right validation panel (live, always visible), each rule with pass/fail icon:
 - I9 レアリティによる分け方ではない
 - フォールバックルール記入済み
 The submit button stays disabled until all pass. Failed rules link to the field.
+In prototypes, open in a deliberately failing state (e.g. newly listed cards not yet grouped, fallback empty)
+so the live validation is visible. Offer click-to-move (select card → 「ここへ」) as an alternative to drag
+for touch and keyboard users. I7 is satisfied structurally: only sealed manufacturer SKUs exist in master data.
 
 There is NO UI to trigger the draw, upload video, or edit after submission.
 After submission the lottery becomes read-only with 「上架後は変更できません」.
@@ -3259,6 +3267,8 @@ Interruption handling: if the camera disconnects, show a blocking red screen
 「録画が中断されました。この開封会は中止されます」 with only one action
 「責任者に連絡」. No resume button.
 Big touch targets (56px). High contrast.
+The station is used at a dim opening table: a single dark high-contrast theme is allowed here (does not follow
+system light/dark). Show the platform camera feed without overlays — it is the raw footage being recorded.
 ```
 
 #### UI-15 归属工作台（O12）
@@ -3272,7 +3282,9 @@ Build "/ops/attribution/[lotteryId]" (desktop).
 - Right: detail panel for the selected card showing candidate slots from the frozen
   snapshot, the fallback rule text, and actions 「この枠に割り当て」.
 - Manual attributions require a second reviewer: status 「承認待ち」 until another staff
-  member approves. Show both staff names and timestamps.
+  member approves. Show both staff names and timestamps. The same person can never approve their own
+  assignment; a reviewer can also reject (back to 要確認). Off-list cards show the frozen fallback rule and
+  its resulting slot. Finalizing produces the OpeningRecord and shows its SHA-256.
 - Filter chips: 要確認 only / リスト外 only.
 - Top bar: progress 「確定 184 / 200」 and 「すべて確定して記録を生成」 (disabled until
   all cards are confirmed). Every action writes to an audit log panel (bottom drawer).
@@ -3291,7 +3303,8 @@ Tabs: 入庫（振り分け後） / 出荷依頼 / 梱包 / 出荷済.
 - 梱包: packing checklist per request (scan each item → green), high-value packaging
   rule reminder, print label button.
 - 出荷済: tracking numbers.
-Keyboard and barcode-scanner first; large monospace codes.
+Keyboard and barcode-scanner first; large monospace codes. Enter in the auto-focused input = one scan.
+The k shown here and on the dashboard must be computed from the same shipping requests.
 ```
 
 #### UI-17 数据看板（O01）
@@ -3314,7 +3327,10 @@ Charts:
 
 A red banner appears if k < 3 or no price tier reaches 100% sell-out for 4 consecutive
 weeks: 「生存変数がしきい値を下回っています」.
-Use recharts. Keep colors restrained: accent for primary series, grey for comparison.
+Use recharts in production; prototypes draw inline SVG (single-file rule). Keep colors restrained: accent for
+the primary series; reference / threshold lines in grey dashes. A second data series must not be grey (fails
+the chroma floor) — use the trust teal (light #0F9D8A / dark #2AA897, validated with the indigo accent).
+Every chart: hover tooltip, a 「表で見る」 table view, and the alert banner carries an icon + text, not color alone.
 ```
 
 ---
