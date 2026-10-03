@@ -7,7 +7,7 @@ TGC 开箱平台 **Box Rush / BOXラッシュ** 的设计文档库。主打 **Br
 - **产品文档**：[docs/breaking-platform.md](docs/breaking-platform.md)（前言 + 第 1、5–9 章 + 附录 A、B）
 - **市场研究**：[docs/market-research.md](docs/market-research.md)（第 2–4 章）
 
-**团队预览站**：<https://box-rush.github.io/preview/>（模块示意图 + 全部原型；仓库 `box-rush/preview`，公开、noindex）
+**团队预览站**：<https://box-rush.github.io/preview/>（模块示意图 + 全部原型 + 截图与 prompt 汇总；仓库 `box-rush/preview`，公开、noindex）
 
 界面原型源文件：[`prototype/`](prototype/)（静态 HTML，浏览器直接打开）
 
@@ -22,6 +22,6 @@ TGC 开箱平台 **Box Rush / BOXラッシュ** 的设计文档库。主打 **Br
 | 6 | 机制设计：多商家平台（不变量 I1–I9） |
 | 7 | 单位经济模型 |
 | 8 | 产品功能拆解 |
-| 9 | 界面设计 Prompt（v0 / Lovable / Claude） |
+| 9 | 界面设计 Prompt（v0 / Lovable / Claude）；prompt 模板与生成过程（§9.8 / §9.9） |
 | 附录 A | 待决策与 Blocker |
 | 附录 B | 产品名初步商标检索 |
