@@ -2709,6 +2709,9 @@ Lovable 默认 React + Vite，prompt 同样适用，只需忽略 App Router 相�
 | UI-08 开盒结果 | `prototype/ui-08-result.html`（`#L011`；卡片与 UI-07 同一种子生成） | 预览站 | 2026-10-03 |
 | UI-09 验证页 + 公开验证站 | `prototype/ui-09-verify.html`（`#L015` 随机 / `#L009`、`#L011` 选位；无 # 为公开入口）。**浏览器内真实计算**，可切换"篡改值"演示不一致 | 预览站 | 2026-10-03 |
 | UI-10 仓库 + 发货申请 | `prototype/ui-10-collection.html`（`#stored` / `#shipping` / `#received` / `#ship`） | 预览站 | 2026-10-03 |
+| UI-11 首次引导 | `prototype/ui-11-welcome.html` | 预览站 | 2026-10-03 |
+| UI-12 消费保护设置 | `prototype/ui-12-spending.html`（数字与 UI-04 一致；深夜确认按 PD10） | 预览站 | 2026-10-03 |
+| ~~UI-06 分位公示演出~~ | 不做（P1，用户 2026-10-03 决定本轮跳过） | — | — |
 | UI-13 场次创建向导 + 分位编辑器 | `prototype/ui-13-merchant-wizard.html`（初始故意不合格以演示实时校验） | 预览站 | 2026-10-03 |
 | UI-14 开盒工位端 | `prototype/ui-14-station.html`（模拟 9/26 20:00 L009 开盒班次；可模拟摄像头断开） | 预览站 | 2026-10-03 |
 | UI-15 归属工作台 | `prototype/ui-15-attribution.html#L009`（二人确认、审计日志、生成开盒记录哈希） | 预览站 | 2026-10-03 |
