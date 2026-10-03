@@ -2705,6 +2705,7 @@ Lovable 默认 React + Vite，prompt 同样适用，只需忽略 App Router 相�
 | UI-03 选位 | `prototype/ui-03-pick.html`（`#L005` 默认 16 枠 / `#L001`） | https://claude.ai/artifact/T1bmtS4kAkQuZapYJHwzd3 | 2026-10-02（2026-10-03：「確保して進む」跳转 UI-04） |
 | UI-04 确认与支付 + 结果 | `prototype/ui-04-checkout.html`（`#L005-3-5` 选位订单 / `#L002-r2` 随机订单） | https://claude.ai/artifact/Fmh1pBmtcdgKqvA2m15kRF | 2026-10-03 |
 | UI-05 マイ枠 + 场次进度 | `prototype/ui-05-my-slots.html`（`#wait` / `#ready` / `#done` / `#ended`；`#p-L009` 等进度页；原型时钟 9/26 18:00） | https://claude.ai/artifact/F1SNd6FjgrR9U1kiYZJfZQ | 2026-10-03 |
+| UI-07 录像回放 | `prototype/ui-07-recording.html`（`#L011`；`#L011-t754` 从第 754 秒开始） | https://claude.ai/artifact/2m8FAvMoS14wNCyPfA9B7a | 2026-10-03 |
 
 > 原型顶部有"原型设置"条，可切换参考价格显示（PD2 的 A/B）与页面状态（正常 / 加载中 / 无场次）；
 > 未生成的页面点击后提示"尚未生成"。数据为示例，价格按"各位价格合计 ≈ 参考零售价 × 1.10–1.30"设置。
@@ -3076,6 +3077,10 @@ Build the recording player page at "/lottery/[id]/recording".
 - Card list synced to playback: as the video passes a card's timestamp, highlight that
   card row (card number, name, rarity, slot). Clicking a row seeks the video.
 - Picture-in-Picture button for supported browsers.
+- "Raw footage" means exactly what the camera recorded, including the camera's own timestamp
+  burn-in. Pack number, attributed slot and any other system info must live in a separate overlay
+  layer so that 「元映像のみ表示」 removes all of it.
+- Support deep links to a timestamp (e.g. from a card's 「映像で確認」) and a playback-speed control.
 ```
 
 #### UI-08 开盒结果（U20）
