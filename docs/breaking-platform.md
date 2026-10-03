@@ -67,7 +67,7 @@
 | `X1–X15` | **异常**流程 | §8.4.4 |
 | `U / V / B / O` + 两位数 | 用户 / 公开站 / 商家 / 运营**页面** | §8.9 |
 | `R1–R14` | 产品**风险** | §8.15 |
-| `PD1–PD8` | 产品**待决策** | §8.14、附录 A |
+| `PD1–PD10` | 产品**待决策** | §8.14、附录 A |
 | `W1–W10` | HOBBY STOCKS **走查**项 | §8.16 |
 | `UI-01–UI-17` | 界面 **prompt** | §9.1 |
 | `UR1–UR9` | 界面**硬规则** | §9.2 |
@@ -1990,7 +1990,7 @@ M17 结算 ◀────  SV8 结算（归属完成 + 入仓，PD3）
 | F | 功能 | 优先级 | 参考 | 备注 |
 |---|---|---|---|---|
 | F2.1 | 月额 / 单笔上限（默认值生效，用户可调低；**调高需冷却期**） | **P0** | §8.1.4 | |
-| F2.2 | 冷静期：夜间（如 0–6 时）大额二次确认 | **P0** | §8.1.4 | 案例发生在深夜至凌晨 |
+| F2.2 | 冷静期：**当夜（JST 0–6 时）累计消费（含本单）达 ¥10,000** 时，支付前二次确认（PD10） | **P0** | §8.1.4 | 案例发生在深夜至凌晨；原定"单笔 ¥30,000"按实际价格（一单约 ¥200–¥7,500）永远不会触发，已改为累计 |
 | F2.3 | 自我排除：暂停购位 N 日，期间不可撤销 | P1 | — | |
 | F2.4 | 消费月报（本月支出、场次数） | P1 | — | 不显示"盈亏"（§8.1.3 H6） |
 | F2.5 | ~~未成年人消费申诉通道~~ | ❌ 已取消 | — | 2026-09-24 用户决定 |
@@ -2031,9 +2031,9 @@ M17 结算 ◀────  SV8 结算（归属完成 + 入仓，PD3）
 
 | F | 功能 | 优先级 | 参考 | 追溯 / 备注 |
 |---|---|---|---|---|
-| F5.1 | 直接支付，**第三方聚合、首选 Stripe**（2026-09-24 用户决定）：信用卡（含 JCB）、Apple Pay、Google Pay、コンビニ払い。**无充值点数** | P0 | DP7 | M5 支付通道；⚠️ 便利店支付的延迟入账与锁定超时冲突，需设计 |
+| F5.1 | 直接支付，**第三方聚合、首选 Stripe**（2026-09-24 用户决定）：信用卡（含 JCB，须 3D Secure）、Apple Pay、Google Pay。**不提供コンビニ払い**（PD9）。**无充值点数** | P0 | DP7 | M5 支付通道 |
 | F5.2 | 订单列表与详情（位、金额、状态） | P0 | — | |
-| F5.3 | 流拍 / 中止自动**原路**全额退款 | P0 | H12 | **I2 · I3**；不退到任何站内余额 |
+| F5.3 | 流拍 / 中止自动**原路**全额退款（卡 / 钱包） | P0 | H12 | **I2 · I3**；不退到任何站内余额。不提供便利店支付（PD9）的原因之一：现金支付无法原路退款 |
 | F5.4 | 退款进度 | P0 | — | |
 | F5.5 | 领收書下载 | P1 | — | ⚠️ 适格请求书（インボイス）是否需要视用户类型 |
 | F5.6 | PayPay 支付 | P1 | DP7 | 须 Stripe 外部审核（约 2 周，平台型须联系 Stripe）；见下方支付通道 |
@@ -2042,8 +2042,8 @@ M17 结算 ◀────  SV8 结算（归属完成 + 入仓，PD3）
 
 | 项 | Stripe 支持情况 | 本平台用法 |
 |---|---|---|
-| 信用卡（Visa / Mastercard / JCB / Amex）、Apple Pay、Google Pay | ✅ 支持 | MVP |
-| コンビニ払い（FamilyMart、Lawson、Ministop、Seicomart） | ✅ 支持；异步入账 | MVP；须设计与购位锁定的时序（F5.1 ⚠️） |
+| 信用卡（Visa / Mastercard / JCB / Amex）、Apple Pay、Google Pay | ✅ 支持；**信用卡须做 EMV 3-D Secure 本人认证**（日本 2025-03 末起 EC 原则义务化），Stripe 自动发起 | MVP |
+| コンビニ払い（FamilyMart、Lawson、Ministop、Seicomart） | ✅ 支持；用户拿支付编号 + 确认号到店付现金；单笔 ¥120–¥300,000；退款需用户登记银行账户；另有禁止类别（含ギャンブル） | ❌ **不做**（PD9，2026-10-03）：10 分钟锁位内到店付现金不现实，延长锁位又会拖慢满员；且无法原路退款 |
 | 銀行振込（Furikomi） | ✅ 支持 | 暂不做（入账慢，与满员时序冲突更大） |
 | PayPay | ✅ 支持；**外部审核约 2 周**；平台型业务不能自助开通、须联系 Stripe；走 Connect 时审核更久；单笔 ¥50–¥1,000,000 | P1 |
 | 商家分账（第三方商家开放后） | Stripe Connect | P1，随 M14 开放第三方 |
@@ -2546,6 +2546,7 @@ MVP 仅自营团队使用（§6.10），P1 开放第三方。
 
 **以下是产品层面必须拍板、但本章不宜替用户决定的事项。** 2026-09-23 登记；同日用户确认**按倾向定**：
 已决 6 项（PD1–PD4、PD6、PD7）；PD5 按建议定为平台承担（同日）；PD8 须律师判定，仍未决。
+2026-10-03 生成支付页原型时新增 PD9（便利店支付）、PD10（深夜确认门槛），同日用户拍板：PD9 = A，PD10 = B。
 
 **决策记录规则**：拍板后填写"结论"与日期，把状态改为 ✅；再同步受影响的功能点、
 §8.13 MVP 切分，以及附录 A.2。**"倾向"只是本章的建议，不等于已决定。**
@@ -2560,6 +2561,8 @@ MVP 仅自营团队使用（§6.10），P1 开放第三方。
 | PD6 | 出厂瑕疵卡规则 | 按原状归属 / 平台补偿 | 倾向按原状（厂商品质非平台控制） | X9 | ✅ 已决（2026-09-23） | **按原状归属**，录像为证，平台不补偿；规则须在利用規約与场次规则中事前公示 |
 | PD7 | 端形态 | Web 先行 / App 同步 / 只做 Web | 倾向 Web 先行 | P-A、M11 渠道 | ✅ 已决（2026-09-23） | **只做 Web**，不做原生 App |
 | PD8 | 众筹法律形态 | A 权利贩卖型 / B 共同购入代行型（§5.6.3） | **律师判定** | 资金流、F25.1、§8.4.1 泳道 | ⏳ 待律师 | — |
+| PD9 | コンビニ払い时位锁定多久 | A 不提供便利店支付 / B 锁到"24 小时与销售截止前 1 小时取早"，截止不足 24 小时则不提供 / C 锁到 Stripe 付款期限 | 倾向 **B**：保留现金用户，又不长期占位影响满员 | F5.1、F4.9、满员时长 | ✅ 已决（2026-10-03） | **A：不提供便利店支付**；MVP 支付方式为信用卡、Apple Pay、Google Pay（PayPay 为 P1） |
+| PD10 | 深夜二次确认（F2.2）的门槛 | A 单笔 ¥5,000 以上 / B 当夜（0–6 时）累计 ¥10,000 以上 / C 月额上限的一定比例 | 倾向 **B**：单笔金额普遍小，累计更能识别深夜连续购买 | F2.2、UI-04 | ✅ 已决（2026-10-03） | **B：当夜（JST 0–6 时）累计消费含本单达 ¥10,000 时二次确认** |
 
 ---
 
@@ -2576,7 +2579,7 @@ MVP 仅自营团队使用（§6.10），P1 开放第三方。
 | R7 | HOBBY STOCKS 分队细则未知 | 信息缺口 | 实机走查可能修正 §8.1.3 处置 |
 | R8 | 推送 / 残口标签 / 免运费提示的诱导边界 | 法律 + 资本 ⚠️ | F9.3、F11.6 |
 | R9 | **后台工作量被低估** | 执行 | 运营端 MVP 19 页 + 工位 / 仓储硬件；按"做个网站"估排期会严重低估 |
-| R14 | **支付通道被判为博彩类业务** | 执行 + 法律 | Stripe 禁止业务清单明确包含"くじ与带实物奖品的博彩"；开盒类业务（尤其 RANDOM 分位）可能被风控归入此类，导致审核不过或事后冻结账户。<br>**缓解**：接入前主动向 Stripe 说明业务结构并取得书面确认；准备备用聚合商；PICK 模式（用户自选位）不涉及平台随机，受影响较小。<br>⚠️ 是否构成博彩由 Stripe 风控与律师判断，本条为风险提示 |
+| R14 | **支付通道被判为博彩类业务** | 执行 + 法律 | Stripe 禁止业务清单明确包含"くじ与带实物奖品的博彩"；（コンビニ払い另有禁止类别也含"ギャンブル"，已因 PD9 不采用）；开盒类业务（尤其 RANDOM 分位）可能被风控归入此类，导致审核不过或事后冻结账户。<br>**缓解**：接入前主动向 Stripe 说明业务结构并取得书面确认；准备备用聚合商；PICK 模式（用户自选位）不涉及平台随机，受影响较小。<br>⚠️ 是否构成博彩由 Stripe 风控与律师判断，本条为风险提示 |
 | R13 | **不做年龄验证与未成年人专项功能**（2026-09-24 用户决定，已接受） | 资本层 + 法律 | 第 4 章卡游案例：未成年人消费管控是递表失效的直接原因之一；HOBBY STOCKS 发生过未成年人用成人账户消费 ¥2.76 万（§8.1.4）。<br>DOPA 的做法是利用規約要求未成年人取得法定代理人同意、无实际年龄验证（§8.2.3）。<br>**缓解**：利用規約加入法定代理人同意条款（F1.9）；支付限额与冷静期保留（M2）。<br>⚠️ 日本民法上未成年人合同原则上可撤销，退款请求风险由平台承担；条款写法须律师确认 |
 | R12 | **只做 Web 放弃了 App 形态的体验优势** | 结构 | DOPA 的 App 化卖点是全屏演出流畅、推送即时（DP5）；本平台演出与通知都弱于 App。<br>低频形态（R1）下推送依赖度本就较低，但分位公示、开盒提醒的触达率须实测 |
 | R10 | 主数据维护成本 | 执行 | 每弹收录卡表与角色枠模板须人工建立；新弹上市即需就绪，否则无法开场 |
@@ -2655,6 +2658,8 @@ MVP 仅自营团队使用（§6.10），P1 开放第三方。
 - [Stripe launches Konbini and Furikomi in Japan](https://stripe.com/en-jp/newsroom/news/japan-local-payments)
 - [Stripe PayPay](https://stripe.com/payment-method/paypay)
 - [Stripe Connect](https://docs.stripe.com/connect)
+- [コンビニ決済（Stripe ドキュメント）](https://docs.stripe.com/payments/konbini)
+- [2025年3月末までに全EC加盟店は EMV3-Dセキュア導入を原則義務化（ネットショップ担当者フォーラム）](https://netshop.impress.co.jp/node/12342)
 - [DOPA完全ガイド（オリパラボ）](https://oripa-pick.com/guide/dopa-guide/)
 
 **Web 平台**
@@ -2697,7 +2702,8 @@ Lovable 默认 React + Vite，prompt 同样适用，只需忽略 App Router 相�
 |---|---|---|---|
 | UI-01 首页 | `prototype/ui-01-home.html` | https://claude.ai/artifact/GZGYS6PjtCq4PT9MLSetLA | 2026-09-25（2026-09-26 更新：Banner 移到品类 Tab 上方；平板 / 桌面适配） |
 | UI-02 场次详情 + 规则快照 | `prototype/ui-02-lottery.html`（`#L001` / `#L005` / `#L002` / `#L009` 切换示例） | https://claude.ai/artifact/YDTK2ZPvJzShKLudFrsb1G | 2026-09-26（2026-10-02 加 L005，「枠を選ぶ」跳转 UI-03） |
-| UI-03 选位 | `prototype/ui-03-pick.html`（`#L005` 默认 16 枠 / `#L001`） | https://claude.ai/artifact/T1bmtS4kAkQuZapYJHwzd3 | 2026-10-02 |
+| UI-03 选位 | `prototype/ui-03-pick.html`（`#L005` 默认 16 枠 / `#L001`） | https://claude.ai/artifact/T1bmtS4kAkQuZapYJHwzd3 | 2026-10-02（2026-10-03：「確保して進む」跳转 UI-04） |
+| UI-04 确认与支付 + 结果 | `prototype/ui-04-checkout.html`（`#L005-3-5` 选位订单 / `#L002-r2` 随机订单） | https://claude.ai/artifact/Fmh1pBmtcdgKqvA2m15kRF | 2026-10-03 |
 
 > 原型顶部有"原型设置"条，可切换参考价格显示（PD2 的 A/B）与页面状态（正常 / 加载中 / 无场次）；
 > 未生成的页面点击后提示"尚未生成"。数据为示例，价格按"各位价格合计 ≈ 参考零售价 × 1.10–1.30"设置。
@@ -2997,17 +3003,21 @@ Checkout:
 - Spending limit indicator: 「今月の利用額 ¥12,000 / 上限 ¥50,000」 with link to settings.
   If this order exceeds the limit, block with an explanation and link to settings
   (raising a limit takes effect after a cooling period).
-- Payment method selector (mock of Stripe Payment Element): クレジットカード / Apple Pay /
-  Google Pay / コンビニ払い. Show PayPay as 「準備中」 (disabled) for now.
-  For コンビニ払い show a warning that payment must complete before the hold expires.
+- Payment method selector (mock of Stripe Payment Element; do not load Stripe.js in prototypes):
+  クレジットカード / Apple Pay / Google Pay. Show PayPay as 「準備中」 (disabled) for now.
+  Do NOT offer コンビニ払い (PD9).
+  Show 「決済は Stripe が処理します。カード情報は当社のサーバーに保存されません」.
+  - Card: card number / expiry / CVC, then an EMV 3-D Secure step (mandatory for EC in Japan
+    since 2025-03) before processing.
 - Primary button 「支払う ¥1,400」.
-- If current time is between 0:00 and 6:00 JST and total >= ¥30,000, show a confirmation
-  dialog 「深夜の高額購入です。内容をご確認ください」 before paying.
+- If current time is between 0:00 and 6:00 JST and tonight's total spend including this order
+  reaches ¥10,000 (PD10), show a confirmation dialog 「深夜の高額購入です。内容をご確認ください」
+  with tonight's total before paying.
 
 Result page:
 - Success: check icon, 「購入が完了しました」, slot list, and next step:
   「満員になると抽選結果（あなたの枠）をお知らせします」, button 「マイ枠で確認」.
-- Failure: reason and 「もう一度試す」. Never mention points or balance.
+- Failure: reason and 「もう一度試す」; state that nothing was charged. Never mention points or balance.
 ```
 
 #### UI-05 マイ枠 + 场次进度（U13 / U14）
@@ -3150,7 +3160,8 @@ Build "/settings/spending".
 - Current month usage card: 「今月の利用額 ¥12,000」 with a bar against the monthly limit.
 - Monthly limit and per-order limit fields with presets. Lowering applies immediately;
   raising shows 「引き上げは72時間後に反映されます」 and a pending state.
-- Late-night confirmation toggle (default ON, cannot be turned off for orders >= ¥30,000).
+- Late-night confirmation toggle (default ON; cannot be turned off once tonight's total between
+  0:00 and 6:00 JST reaches ¥10,000 — PD10).
 - Self-exclusion: 「一定期間 購入を停止する」 with 7 / 30 / 90 days; confirmation dialog
   stating it cannot be cancelled during the period.
 - Monthly statement list (month, spend, number of lotteries). No profit/loss numbers.
@@ -3331,9 +3342,9 @@ Use recharts. Keep colors restrained: accent for primary series, grey for compar
 | 8 | 产品名 Box Rush 的商标检索（附录 B） | ✅ J-PlatPat 无问题（2026-09-24 用户确认）；申请手续另行办理 |
 | 9 | **Stripe 业务审核**：说明开盒业务不属于禁止的"くじ / 博彩"（M5 支付通道、R14） | **接入前须取得 Stripe 确认**；未通过则需备用聚合商 |
 
-### A.2 产品待决策 PD1–PD8
+### A.2 产品待决策 PD1–PD10
 
-2026-09-23 登记；同日按倾向定下 PD1–PD4、PD6，PD5 按建议定为平台承担（PD7 已先决）。仅 PD8 须律师判定。选项、倾向与影响见 §8.14。
+2026-09-23 登记；同日按倾向定下 PD1–PD4、PD6，PD5 按建议定为平台承担（PD7 已先决）。2026-10-03 新增并定下 PD9（不提供便利店支付）、PD10（深夜累计 ¥10,000）。仅 PD8 须律师判定。选项、倾向与影响见 §8.14。
 **"倾向"只是建议，不等于已决定。** 拍板后在 §8.14 填写结论与日期，并同步本表与受影响的功能点、§8.13 MVP 切分。
 
 | # | 事项 | 状态 |
@@ -3346,6 +3357,8 @@ Use recharts. Keep colors restrained: accent for primary series, grey for compar
 | PD6 | 出厂瑕疵卡规则 | ✅ 按原状归属，事前公示 |
 | PD7 | 端形态 | ✅ **只做 Web**，不做原生 App（2026-09-23） |
 | PD8 | 众筹法律形态 | ⏳ 待律师，**同 A.1 #1** |
+| PD9 | コンビニ払い | ✅ **不提供便利店支付**（2026-10-03） |
+| PD10 | 深夜二次确认门槛 | ✅ **当夜（0–6 时）累计含本单 ¥10,000**（2026-10-03） |
 
 ---
 
