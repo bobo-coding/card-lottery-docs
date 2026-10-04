@@ -52,7 +52,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 8 | **产品层**：角色 → 产品面 → 流程 → 模块 → 功能点 → 页面 → 指标 → MVP | 拆解 |
 | 9 | 界面设计 prompt（v0 / Lovable / Claude），含硬规则 UR1–UR9 与检查清单 | 交付物 |
 | 10 | **开发交接**：规格权威顺序、阅读路径、状态枚举全集、bx-shuffle-v1 规格与测试向量、原型参数已定 / 未定、MVP 页面原型覆盖、未定技术决策 T1–T9 | 交接（不新增判断） |
-| 附录 A | 法律 / 商务 Blocker 与产品待决策 PD1–PD12 | 跟踪 |
+| 附录 A | 法律 / 商务 Blocker 与产品待决策 PD1–PD15 | 跟踪 |
 | 附录 B | 产品名 Box Rush 商标检索记录（已无问题） | 检索记录 |
 
 **改动时的同步项**：
@@ -64,7 +64,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - 待决策拍板 → §8.14 填结论与日期，同步附录 A.2
 - 增删 / 改动模块或功能点 → 同步**团队模块示意图**：源文件是预览仓库 `box-rush/preview` 的 `modules.html`
   （本地 `~/Projects/box-rush-preview`）；改前逐模块比对功能点数量与优先级
-  （当前：25 模块、153 功能点、MVP 104、MVP 53 页）。旧的 Artifact 链接 GB1Yps3Lm8a5nWqfbJFbvj 需另行重发
+  （当前：25 模块、158 功能点、MVP 108、MVP 55 页）。旧的 Artifact 链接 GB1Yps3Lm8a5nWqfbJFbvj 需另行重发
 - 改动 `prototype/` → 原样复制到 `box-rush/preview` 的 `prototype/` 并推送；新增原型还要更新其 `index.html` 导航
   （预览站 https://box-rush.github.io/preview/，GitHub Pages，main 分支根目录。**仓库与站点都是公开的**（用户 2026-09-26 选择），
   不要把财务、法务细节、未公开决策放进预览站页面）
@@ -161,8 +161,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
   2026-10-03 新增并定下 PD9（不提供便利店支付）、PD10（深夜二次确认：当夜 0–6 时累计含本单 ¥10,000）。
   2026-10-04 定下 PD11：§10.5 中原型已给值的运营参数按原型取值（锁位 10 分钟、限购默认 3 位、月额 ¥50,000 / 单笔 ¥10,000 / 调高 72h、
   自我排除 7/30/90 日、免费保管 30 天、运费 ¥390 / 补偿付き ¥680）。
-  同日 PD12：保管期满强制发货；开盒逾期宽限、信标缺失顺延宽限均 24 小时。强制发货的运费承担与无地址处置仍未定。
-  不要替用户推定 PD8 与这些未定细节。
+  同日 PD12：保管期满强制发货；开盒逾期宽限、信标缺失顺延宽限均 24 小时。强制发货运费由用户承担（PD13）；扣款失败与无地址处置仍未定。
+  同日 PD13：**运费由用户承担**（参考 HOBBY STOCKS），提供包邮券（满额发放）与 voucher code；券规则 CP1–CP7（§8.5 M9）：
+  不可购买 / 转让 / 折现、只抵运费、不做催促提示、单次发货有最低件数（防止券拉低 `k`，§7.4.3）。
+  **PD14（券发放与使用条件）、PD15（code 能否抵位价）待决**，倾向见 §8.14。
+  不要替用户推定 PD8、PD14、PD15 与这些未定细节。
 
 ## 两个生死变量
 
