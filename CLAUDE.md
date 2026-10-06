@@ -51,7 +51,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 7 | 单位经济模型（结构层不依赖数字，测算层为示例） | 结构 + 测算 |
 | 8 | **产品层**：角色 → 产品面 → 流程 → 模块 → 功能点 → 页面 → 指标 → MVP | 拆解 |
 | 9 | 界面设计 prompt（v0 / Lovable / Claude），含硬规则 UR1–UR9 与检查清单 | 交付物 |
-| 10 | **开发交接**：规格权威顺序、阅读路径、状态枚举全集、bx-shuffle-v1 规格与测试向量、原型参数已定 / 未定、MVP 页面原型覆盖、未定技术决策 T1–T9 | 交接（不新增判断） |
+| 10 | **开发交接**：规格权威顺序、阅读路径、状态枚举全集、bx-shuffle-v1 规格与测试向量、原型参数已定 / 未定、MVP 页面原型覆盖、未定技术决策 T1–T9、MVP 排期估算（§10.9） | 交接（不新增判断） |
 | 附录 A | 法律 / 商务 Blocker 与产品待决策 PD1–PD15 | 跟踪 |
 | 附录 B | 产品名 Box Rush 商标检索记录（已无问题） | 检索记录 |
 
@@ -64,11 +64,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - 待决策拍板 → §8.14 填结论与日期，同步附录 A.2
 - 增删 / 改动模块或功能点 → 同步**团队模块示意图**：源文件是预览仓库 `box-rush/preview` 的 `modules.html`
   （本地 `~/Projects/box-rush-preview`）；改前逐模块比对功能点数量与优先级
-  （当前：25 模块、158 功能点、MVP 108、MVP 55 页）。旧的 Artifact 链接 GB1Yps3Lm8a5nWqfbJFbvj 需另行重发
+  （当前：25 模块、158 功能点、MVP 110、MVP 55 页）。旧的 Artifact 链接 GB1Yps3Lm8a5nWqfbJFbvj 需另行重发
 - 改动 `prototype/` → 原样复制到 `box-rush/preview` 的 `prototype/` 并推送；新增原型还要更新其 `index.html` 导航
   （预览站 https://box-rush.github.io/preview/，GitHub Pages，main 分支根目录。**仓库与站点都是公开的**（用户 2026-09-26 选择），
   不要把财务、法务细节、未公开决策放进预览站页面）
-- 改状态机、算法、PD、功能点参数、MVP 页面或原型 → 同步第 10 章（§10.3 状态、§10.4 算法、§10.5 参数表、§10.6 覆盖表）；
+- 改状态机、算法、PD、功能点参数、MVP 页面或原型 → 同步第 10 章（§10.3 状态、§10.4 算法、§10.5 参数表、§10.6 覆盖表、§10.9 排期——MVP 范围变了要重估）；
   第 10 章只做汇总，**不得在那里新增产品判断**；§10.5 的「未定」参数不要替用户拍板
 - 引用一律写 `§章.节`（如 §6.3）；新增编号前先查前言「编号约定」防重名
 
@@ -165,7 +165,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
   同日 PD13：**运费由用户承担**（参考 HOBBY STOCKS），提供包邮券（满额发放）与 voucher code；券规则 CP1–CP7（§8.5 M9）：
   不可购买 / 转让 / 折现、只抵运费、不做催促提示、单次发货有最低件数（防止券拉低 `k`，§7.4.3）。
   同日 PD14 / PD15 按倾向定：自动发券按参与满员场次 / 位数计（不按金额，P1）、包邮券单次最低 3 件、
-  MVP 只做运营定向发 code；code 只抵运费不抵位价。发券门槛 N、券有效期、月发放上限仍未定。
+  MVP 只做运营定向发 code；code 只抵运费不抵位价。券有效期 30 天（2026-10-06）；发券门槛 N、月发放上限仍未定（P1，不阻塞 MVP）。
+  2026-10-06：寄存超期 F9.6 / F22.5 提到 MVP（P0）。
   不要替用户推定 PD8 与这些未定细节。
 
 ## 两个生死变量
