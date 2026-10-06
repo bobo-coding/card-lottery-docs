@@ -52,7 +52,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 8 | **产品层**：角色 → 产品面 → 流程 → 模块 → 功能点 → 页面 → 指标 → MVP | 拆解 |
 | 9 | 界面设计 prompt（v0 / Lovable / Claude），含硬规则 UR1–UR9 与检查清单 | 交付物 |
 | 10 | **开发交接**：规格权威顺序、阅读路径、状态枚举全集、bx-shuffle-v1 规格与测试向量、原型参数已定 / 未定、MVP 页面原型覆盖、技术选型待定项 T1–T19（A 组推荐方案 §10.7.3）、MVP 排期估算（§10.9）、待定事项总表（§10.11） | 交接（不新增判断） |
-| 附录 A | 法律 / 商务 Blocker 与产品待决策 PD1–PD16 | 跟踪 |
+| 附录 A | 法律 / 商务 Blocker 与产品待决策 PD1–PD20 | 跟踪 |
 | 附录 B | 产品名 Box Rush 商标检索记录（已无问题） | 检索记录 |
 
 **改动时的同步项**：
@@ -64,7 +64,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - 待决策拍板 → §8.14 填结论与日期，同步附录 A.2
 - 增删 / 改动模块或功能点 → 同步**团队模块示意图**：源文件是预览仓库 `box-rush/preview` 的 `modules.html`
   （本地 `~/Projects/box-rush-preview`）；改前逐模块比对功能点数量与优先级
-  （当前：25 模块、158 功能点、MVP 110、MVP 55 页）。旧的 Artifact 链接 GB1Yps3Lm8a5nWqfbJFbvj 需另行重发
+  （当前：25 模块、160 功能点、MVP 110、MVP 54 页）。旧的 Artifact 链接 GB1Yps3Lm8a5nWqfbJFbvj 需另行重发
 - 改动 `prototype/` → 原样复制到 `box-rush/preview` 的 `prototype/` 并推送；新增原型还要更新其 `index.html` 导航
   （预览站 https://box-rush.github.io/preview/，GitHub Pages，main 分支根目录。**仓库与站点都是公开的**（用户 2026-09-26 选择），
   不要把财务、法务细节、未公开决策放进预览站页面）
@@ -160,6 +160,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **技术选型 A 组**（2026-10-06，§10.7.3）：T7 审计只追加 + 哈希链 + 不可删除归档、T9 场次独立 HMAC 假名、T11 随机服务独立账号 + 密钥加密种子、
   T12 锁位与满员靠 PostgreSQL 条件更新同事务、T13 PostgreSQL 任务队列 + 每分钟巡检、T19 开发期三语 —— **已定**；
   T1（TypeScript 单仓库 + PostgreSQL + AWS 东京）与 T10（参考 DOPA 的 Cognito 方案）**仍为推荐，待用户确认**。
+- **第一版只做卡号随机**（2026-10-06，PD17–PD20，§6.4.5）：抽选把卡号清单按位轮流发；一人可多位；**按位保底**，0 张的位配保底卡
+  （备 n − 1 张，新品优先，价值下限未定）；选位 / 整盒 / キャラ枠后置。录像 IVS + 本地双路，两路同时缺失才算中断（PD19）。
+  第一版无公开信标（beacon = 空串），**验证相关文案不得声称"平台无法操纵"**。已生成原型仍是キャラ枠 / 选位示例，与第一版不一致。
 - **产品本质是履约操作系统**：功能量重心在运营端，用户 Web 只是前台。
 - **PD 已按倾向定（2026-09-23）**：满员前不可取消 / 参考价 A/B / 归属完成 + 入仓即结算（待律师）/
   残口提醒仅订阅用户 / 瑕疵卡按原状归属；PD5 录像中断损失由平台承担。**PD8 未决**（待律师）；
