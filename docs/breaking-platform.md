@@ -2921,7 +2921,7 @@ Lovable 默认 React + Vite，prompt 同样适用，只需忽略 App Router 相�
 | UI-12 消费保护设置 | `prototype/ui-12-spending.html`（数字与 UI-04 一致；深夜确认按 PD10） | 预览站 | 2026-10-03 |
 | ~~UI-06 分位公示演出~~ | 不做（P1，用户 2026-10-03 决定本轮跳过） | — | — |
 | UI-13 场次创建向导 + 分位编辑器 | `prototype/ui-13-merchant-wizard.html`（初始故意不合格以演示实时校验） | 预览站 | 2026-10-03 |
-| UI-14 开盒工位端 | `prototype/ui-14-station.html`（模拟 9/26 20:00 L009 开盒班次；可模拟摄像头断开） | 预览站 | 2026-10-03 |
+| UI-14 开盒工位端 | `prototype/ui-14-station.html`（模拟 9/26 20:00 L009 开盒班次；可模拟摄像头断开）。2026-10-07：卡片录入改为数字键盘 + 事后补录，加读卡区第 2 机位（T4） | 预览站 | 2026-10-03 |
 | UI-15 归属工作台 | `prototype/ui-15-attribution.html#L009`（二人确认、审计日志、生成开盒记录哈希） | 预览站 | 2026-10-03 |
 | UI-16 仓储拣货与合单 | `prototype/ui-16-warehouse.html`（`#in` / `#req` / `#pack` / `#out`；Enter 模拟扫码） | 预览站 | 2026-10-03 |
 | UI-17 数据看板 | `prototype/ui-17-dashboard.html`（可模拟 k < 3、无档位售罄告警） | 预览站 | 2026-10-03 |
