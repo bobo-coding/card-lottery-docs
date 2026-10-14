@@ -64,7 +64,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - 待决策拍板 → §8.14 填结论与日期，同步附录 A.2
 - 增删 / 改动模块或功能点 → 同步**团队模块示意图**：源文件是预览仓库 `box-rush/preview` 的 `modules.html`
   （本地 `~/Projects/box-rush-preview`）；改前逐模块比对功能点数量与优先级
-  （当前：25 模块、160 功能点、MVP 111、MVP 54 页）。旧的 Artifact 链接 GB1Yps3Lm8a5nWqfbJFbvj 需另行重发
+  （当前：25 模块、162 功能点、MVP 113、MVP 54 页）。旧的 Artifact 链接 GB1Yps3Lm8a5nWqfbJFbvj 需另行重发
 - 改动 `prototype/` → 原样复制到 `box-rush/preview` 的 `prototype/` 并推送；新增原型还要更新其 `index.html` 导航
   （预览站 https://box-rush.github.io/preview/，GitHub Pages，main 分支根目录。**仓库与站点都是公开的**（用户 2026-09-26 选择），
   不要把财务、法务细节、未公开决策放进预览站页面）
@@ -165,6 +165,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
   卡号清单**不做官方站自动抓取**，默认平台模板（AI 起草 + 人工核对）；用户侧卡图用读卡区相机拍的实物照片，不用官方图片。**开发侧待定事项已清零**。
   D 组（§10.7.5，2026-10-14）：T16 事件写自己的 PostgreSQL + Metabase、A/B 自建分组；T17 CloudWatch + Sentry（剔除个人信息）+ SNS 告警（LINE Notify 已终止）；
   T18 WAF + 购买前人机验证 + 三账号隔离 + 备份跨区。**技术选型 19 项全部定案**。生产环境就绪清单 P1–P18 见 §10.13
+  **获客渠道与仓储物流暂不考虑**（2026-10-14），但产品内做获客来源追踪（F26.6 首次 / 最近来源、F26.7 渠道看板，只用第一方数据、不装广告像素）。
   （运维与资金类照常；**合规类 P1–P7、P9 用户 2026-10-14 决定暂缓**，不要主动推进或改原型，除非用户恢复）。
 - **第一版只做卡号随机**（2026-10-06，PD17–PD20，§6.4.5）：抽选把卡号清单按位轮流发；一人可多位；**按位保底**，0 张的位配保底卡
   （保底卡全部由商家配置；系统只强制备 n − 1 张、开卖前入仓公示）；选位 / 整盒 / キャラ枠后置。录像 IVS + 本地双路，两路同时缺失才算中断（PD19）。
